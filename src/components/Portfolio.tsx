@@ -6,6 +6,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { contactPlaceholders, Language, profile } from "../content/profile";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const asset = (path: string) => `${basePath}${path}`;
+
 function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return <span aria-hidden="true" className={diagonal ? "arrow arrow-diagonal" : "arrow"}>↓</span>;
 }
@@ -23,7 +26,7 @@ const introAssets = [
   "/media/hero/intro/branch-top-right-base.webp",
   "/media/hero/intro/branch-top-right-leaves-a.webp",
   "/media/hero/intro/branch-top-right-leaves-b.webp",
-] as const;
+].map(asset);
 
 const introSessionKey = "zpp-forest-intro-seen-v7";
 
@@ -144,7 +147,7 @@ function ArtInterlude({ index, variant, title, note }: InterludeProps) {
       <div className="interlude-canvas">
         {isObservation && (
           <>
-            <Image unoptimized className="observation-landscape" src="/media/interlude/observation/hero-landscape-v2.webp" alt="暗色古典油画风格的湖泊、月亮、山谷与石台" fill sizes="100vw" />
+            <Image unoptimized className="observation-landscape" src={asset("/media/interlude/observation/hero-landscape-v2.webp")} alt="暗色古典油画风格的湖泊、月亮、山谷与石台" fill sizes="100vw" />
             <div className="observation-ring-system" aria-hidden="true">
               <div className="observation-ring-rotor">
                 <i className="observation-ring" />
@@ -153,22 +156,22 @@ function ArtInterlude({ index, variant, title, note }: InterludeProps) {
               </div>
             </div>
             <div className="observation-sculpture">
-              <Image unoptimized className="observation-bust" src="/media/interlude/observation/hero-bust-v2.webp" alt="古典石膏半身像" width={825} height={1359} sizes="(max-width: 640px) 95vw, 42vw" />
+              <Image unoptimized className="observation-bust" src={asset("/media/interlude/observation/hero-bust-v2.webp")} alt="古典石膏半身像" width={825} height={1359} sizes="(max-width: 640px) 95vw, 42vw" />
             </div>
             <div className="observation-polyhedron-flight" aria-hidden="true">
               <i className="observation-polyhedron-shadow" />
-              <Image unoptimized className="observation-polyhedron" src="/media/interlude/observation/hero-polyhedron-v2.webp" alt="" width={658} height={593} sizes="(max-width: 640px) 21vw, 11vw" />
+              <Image unoptimized className="observation-polyhedron" src={asset("/media/interlude/observation/hero-polyhedron-v2.webp")} alt="" width={658} height={593} sizes="(max-width: 640px) 21vw, 11vw" />
             </div>
           </>
         )}
         {(variant === "painting" || variant === "collage") && (
-          <Image unoptimized className="interlude-painting interlude-layer" src="/media/art/twilight-painting-warm.webp" alt="原创暮光油画" fill sizes="100vw" />
+          <Image unoptimized className="interlude-painting interlude-layer" src={asset("/media/art/twilight-painting-warm.webp")} alt="原创暮光油画" fill sizes="100vw" />
         )}
         {!isObservation && (variant === "sculpture" || variant === "collage" || variant === "wave") && (
-          <Image unoptimized className="interlude-bust interlude-layer" src="/media/art/plaster-bust.webp" alt="带油画笔触的原创石膏胸像" width={1024} height={1536} sizes="(max-width: 640px) 90vw, 48vw" />
+          <Image unoptimized className="interlude-bust interlude-layer" src={asset("/media/art/plaster-bust.webp")} alt="带油画笔触的原创石膏胸像" width={1024} height={1536} sizes="(max-width: 640px) 90vw, 48vw" />
         )}
         {!isObservation && (variant === "painting" || variant === "sculpture" || variant === "collage") && (
-          <Image unoptimized className="interlude-hand interlude-layer" src="/media/art/plaster-hand.webp" alt="原创石膏手臂雕塑" width={1577} height={997} sizes="(max-width: 640px) 110vw, 66vw" />
+          <Image unoptimized className="interlude-hand interlude-layer" src={asset("/media/art/plaster-hand.webp")} alt="原创石膏手臂雕塑" width={1577} height={997} sizes="(max-width: 640px) 110vw, 66vw" />
         )}
         {variant === "wave" && (
           <div className="paper-wave" aria-hidden="true">
@@ -613,11 +616,11 @@ export function Portfolio() {
         <div className="intro-scene" aria-label={lang === "zh" ? "森林穿越入场动画" : "Forest fly-through intro"}>
           <div className="intro-fog" aria-hidden="true" />
           <div className="intro-light" aria-hidden="true" />
-          <Image unoptimized priority className="intro-layer intro-middle intro-middle--left" src="/media/hero/intro/forest-middle-left.webp" alt="" fill sizes="100vw" />
-          <Image unoptimized priority className="intro-layer intro-middle intro-middle--right" src="/media/hero/intro/forest-middle-right.webp" alt="" fill sizes="100vw" />
-          <Image unoptimized priority className="intro-layer intro-near intro-near--left" src="/media/hero/intro/forest-near-left.webp" alt="" fill sizes="100vw" />
-          <Image unoptimized priority className="intro-layer intro-near intro-near--right" src="/media/hero/intro/forest-near-right.webp" alt="" fill sizes="100vw" />
-          <Image unoptimized priority className="intro-layer intro-foreground-leaves" src="/media/hero/intro/forest-foreground-leaves.webp" alt="" fill sizes="100vw" />
+          <Image unoptimized priority className="intro-layer intro-middle intro-middle--left" src={asset("/media/hero/intro/forest-middle-left.webp")} alt="" fill sizes="100vw" />
+          <Image unoptimized priority className="intro-layer intro-middle intro-middle--right" src={asset("/media/hero/intro/forest-middle-right.webp")} alt="" fill sizes="100vw" />
+          <Image unoptimized priority className="intro-layer intro-near intro-near--left" src={asset("/media/hero/intro/forest-near-left.webp")} alt="" fill sizes="100vw" />
+          <Image unoptimized priority className="intro-layer intro-near intro-near--right" src={asset("/media/hero/intro/forest-near-right.webp")} alt="" fill sizes="100vw" />
+          <Image unoptimized priority className="intro-layer intro-foreground-leaves" src={asset("/media/hero/intro/forest-foreground-leaves.webp")} alt="" fill sizes="100vw" />
           <div className="intro-vignette" aria-hidden="true" />
           <button className="intro-skip" type="button" onClick={skipIntro}>
             {lang === "zh" ? "跳过" : "Skip"}<span aria-hidden="true">↗</span>
@@ -646,7 +649,7 @@ export function Portfolio() {
         <div className="hero-stage">
           <div className="hero-atmosphere" />
           <div className="hero-art">
-            <Image unoptimized className="hero-landscape" src="/media/hero/intro/hero-homepage-clean.webp" alt="古典油画风格的湖泊、山谷与云层风景" fill priority sizes="100vw" />
+            <Image unoptimized className="hero-landscape" src={asset("/media/hero/intro/hero-homepage-clean.webp")} alt="古典油画风格的湖泊、山谷与云层风景" fill priority sizes="100vw" />
             <div className="hero-sky-motion" aria-hidden="true">
               <i className="hero-sky-haze" />
               <i className="hero-lake-shimmer" />
@@ -663,19 +666,19 @@ export function Portfolio() {
                 <i className="hero-orbit hero-orbit--two" />
                 <i className="hero-orbit hero-orbit--three" />
               </div>
-              <Image unoptimized className="hero-bust" src="/media/hero/hero-bust.webp" alt="古典石膏头像" width={844} height={1486} priority sizes="(max-width: 640px) 78vw, 43vw" />
+              <Image unoptimized className="hero-bust" src={asset("/media/hero/hero-bust.webp")} alt="古典石膏头像" width={844} height={1486} priority sizes="(max-width: 640px) 78vw, 43vw" />
             </div>
-            <Image unoptimized className="hero-polyhedron hero-polyhedron--large" src="/media/hero/hero-polyhedron-1.webp" alt="" aria-hidden="true" width={362} height={400} priority />
-            <Image unoptimized className="hero-polyhedron hero-polyhedron--small" src="/media/hero/hero-polyhedron-2.webp" alt="" aria-hidden="true" width={135} height={131} priority />
-            <Image unoptimized className="hero-polyhedron hero-polyhedron--pyramid" src="/media/hero/hero-polyhedron-3.webp" alt="" aria-hidden="true" width={326} height={310} priority />
+            <Image unoptimized className="hero-polyhedron hero-polyhedron--large" src={asset("/media/hero/hero-polyhedron-1.webp")} alt="" aria-hidden="true" width={362} height={400} priority />
+            <Image unoptimized className="hero-polyhedron hero-polyhedron--small" src={asset("/media/hero/hero-polyhedron-2.webp")} alt="" aria-hidden="true" width={135} height={131} priority />
+            <Image unoptimized className="hero-polyhedron hero-polyhedron--pyramid" src={asset("/media/hero/hero-polyhedron-3.webp")} alt="" aria-hidden="true" width={326} height={310} priority />
           </div>
           <div className="hero-environment" aria-hidden="true">
-            <Image unoptimized className="hero-branch hero-branch--left-base" src="/media/hero/intro/branch-top-left-base.webp" alt="" fill sizes="100vw" />
-            <Image unoptimized className="hero-branch hero-branch--left-a" src="/media/hero/intro/branch-top-left-leaves-a.webp" alt="" fill sizes="100vw" />
-            <Image unoptimized className="hero-branch hero-branch--left-b" src="/media/hero/intro/branch-top-left-leaves-b.webp" alt="" fill sizes="100vw" />
-            <Image unoptimized className="hero-branch hero-branch--right-base" src="/media/hero/intro/branch-top-right-base.webp" alt="" fill sizes="100vw" />
-            <Image unoptimized className="hero-branch hero-branch--right-a" src="/media/hero/intro/branch-top-right-leaves-a.webp" alt="" fill sizes="100vw" />
-            <Image unoptimized className="hero-branch hero-branch--right-b" src="/media/hero/intro/branch-top-right-leaves-b.webp" alt="" fill sizes="100vw" />
+            <Image unoptimized className="hero-branch hero-branch--left-base" src={asset("/media/hero/intro/branch-top-left-base.webp")} alt="" fill sizes="100vw" />
+            <Image unoptimized className="hero-branch hero-branch--left-a" src={asset("/media/hero/intro/branch-top-left-leaves-a.webp")} alt="" fill sizes="100vw" />
+            <Image unoptimized className="hero-branch hero-branch--left-b" src={asset("/media/hero/intro/branch-top-left-leaves-b.webp")} alt="" fill sizes="100vw" />
+            <Image unoptimized className="hero-branch hero-branch--right-base" src={asset("/media/hero/intro/branch-top-right-base.webp")} alt="" fill sizes="100vw" />
+            <Image unoptimized className="hero-branch hero-branch--right-a" src={asset("/media/hero/intro/branch-top-right-leaves-a.webp")} alt="" fill sizes="100vw" />
+            <Image unoptimized className="hero-branch hero-branch--right-b" src={asset("/media/hero/intro/branch-top-right-leaves-b.webp")} alt="" fill sizes="100vw" />
           </div>
           <div className="hero-eyebrow"><span>PORTFOLIO / 2026</span><span>{content.hero.eyebrow}</span></div>
           <div className="hero-titles" id="hero-title">
@@ -697,16 +700,16 @@ export function Portfolio() {
 
       <section id="about" className="about section-shell" aria-labelledby="about-heading">
         <div className="about-art" aria-hidden="true">
-          <Image unoptimized className="about-landscape" src="/media/about/about-landscape.webp" alt="" fill sizes="100vw" />
-          <Image unoptimized className="about-art-bust" src="/media/about/about-bust.webp" alt="" width={810} height={1419} sizes="(max-width: 640px) 62vw, 34vw" />
-          <Image unoptimized className="about-object about-butterfly about-butterfly--one" src="/media/about/about-butterfly-1.webp" alt="" width={249} height={244} />
-          <Image unoptimized className="about-object about-butterfly about-butterfly--two" src="/media/about/about-butterfly-2.webp" alt="" width={307} height={280} />
-          <Image unoptimized className="about-object about-butterfly about-butterfly--three" src="/media/about/about-butterfly-3.webp" alt="" width={205} height={208} />
-          <Image unoptimized className="about-object about-magnifier about-magnifier--one" src="/media/about/about-magnifier-1.webp" alt="" width={147} height={147} />
-          <Image unoptimized className="about-object about-magnifier about-magnifier--two" src="/media/about/about-magnifier-2.webp" alt="" width={250} height={228} />
-          <Image unoptimized className="about-object about-magnifier about-magnifier--three" src="/media/about/about-magnifier-3.webp" alt="" width={343} height={253} />
-          <Image unoptimized className="about-foliage about-foliage--left" src="/media/about/about-foliage-left.webp" alt="" width={800} height={611} sizes="44vw" />
-          <Image unoptimized className="about-foliage about-foliage--right" src="/media/about/about-foliage-right.webp" alt="" width={825} height={558} sizes="42vw" />
+          <Image unoptimized className="about-landscape" src={asset("/media/about/about-landscape.webp")} alt="" fill sizes="100vw" />
+          <Image unoptimized className="about-art-bust" src={asset("/media/about/about-bust.webp")} alt="" width={810} height={1419} sizes="(max-width: 640px) 62vw, 34vw" />
+          <Image unoptimized className="about-object about-butterfly about-butterfly--one" src={asset("/media/about/about-butterfly-1.webp")} alt="" width={249} height={244} />
+          <Image unoptimized className="about-object about-butterfly about-butterfly--two" src={asset("/media/about/about-butterfly-2.webp")} alt="" width={307} height={280} />
+          <Image unoptimized className="about-object about-butterfly about-butterfly--three" src={asset("/media/about/about-butterfly-3.webp")} alt="" width={205} height={208} />
+          <Image unoptimized className="about-object about-magnifier about-magnifier--one" src={asset("/media/about/about-magnifier-1.webp")} alt="" width={147} height={147} />
+          <Image unoptimized className="about-object about-magnifier about-magnifier--two" src={asset("/media/about/about-magnifier-2.webp")} alt="" width={250} height={228} />
+          <Image unoptimized className="about-object about-magnifier about-magnifier--three" src={asset("/media/about/about-magnifier-3.webp")} alt="" width={343} height={253} />
+          <Image unoptimized className="about-foliage about-foliage--left" src={asset("/media/about/about-foliage-left.webp")} alt="" width={800} height={611} sizes="44vw" />
+          <Image unoptimized className="about-foliage about-foliage--right" src={asset("/media/about/about-foliage-right.webp")} alt="" width={825} height={558} sizes="42vw" />
         </div>
         <div className="section-label"><span>{content.about.label}</span><span>{content.about.title}</span></div>
         <div className="about-orbit" aria-hidden="true"><span>LOGIC</span><span>ART</span><span>AI</span></div>
@@ -729,12 +732,12 @@ export function Portfolio() {
       <section id="experience" className="experience-scroll" aria-labelledby="experience-heading">
         <div className="experience-stage">
           <div className="experience-outdoor" aria-hidden="true">
-            <Image unoptimized priority className="experience-outdoor-landscape" src="/media/experience/experience-outdoor-landscape.webp" alt="" fill sizes="100vw" />
+            <Image unoptimized priority className="experience-outdoor-landscape" src={asset("/media/experience/experience-outdoor-landscape.webp")} alt="" fill sizes="100vw" />
           </div>
           <div className="experience-art experience-art--indoor" aria-hidden="true">
-            <Image unoptimized priority className="experience-indoor-foreground" src="/media/experience/experience-indoor-foreground.png" alt="" fill sizes="100vw" />
-            <Image unoptimized priority className="experience-statue" src="/media/experience/experience-statue-v2.webp" alt="" width={536} height={1419} sizes="(max-width: 640px) 42vw, 24vw" />
-            <Image unoptimized priority className="experience-column-foreground" src="/media/experience/experience-column-foreground.webp" alt="" fill sizes="100vw" />
+            <Image unoptimized priority className="experience-indoor-foreground" src={asset("/media/experience/experience-indoor-foreground.png")} alt="" fill sizes="100vw" />
+            <Image unoptimized priority className="experience-statue" src={asset("/media/experience/experience-statue-v2.webp")} alt="" width={536} height={1419} sizes="(max-width: 640px) 42vw, 24vw" />
+            <Image unoptimized priority className="experience-column-foreground" src={asset("/media/experience/experience-column-foreground.webp")} alt="" fill sizes="100vw" />
           </div>
           <div className="experience-indoor-copy">
             <div className="experience-topline"><span>{content.experience.label}</span><span>{content.experience.date}</span></div>
@@ -766,7 +769,7 @@ export function Portfolio() {
       <ArtInterlude index="II" variant="sculpture" title={content.interludes[1][0]} note={content.interludes[1][1]} />
 
       <section id="capabilities" className="capabilities section-shell" aria-labelledby="capabilities-heading">
-        <Image unoptimized className="section-art section-art--cap-hand art-fly" src="/media/art/plaster-hand.webp" alt="" width={1577} height={997} sizes="50vw" />
+        <Image unoptimized className="section-art section-art--cap-hand art-fly" src={asset("/media/art/plaster-hand.webp")} alt="" width={1577} height={997} sizes="50vw" />
         <span className="paint-orbit paint-orbit--a art-fly" aria-hidden="true" /><span className="paint-orbit paint-orbit--b art-fly" aria-hidden="true" />
         <div className="section-label"><span>{content.capabilities.label}</span><span>EVIDENCE, NOT ADJECTIVES</span></div>
         <h2 id="capabilities-heading" className="editorial-heading reveal">{content.capabilities.title}</h2>
@@ -780,8 +783,8 @@ export function Portfolio() {
       </section>
 
       <section id="ai-lab" className="lab section-shell" aria-labelledby="lab-heading">
-        <div className="lab-art-window art-fly" aria-hidden="true"><Image unoptimized src="/media/art/twilight-painting-warm.webp" alt="" fill sizes="42vw" /></div>
-        <Image unoptimized className="section-art section-art--lab-bust art-fly" src="/media/art/plaster-bust.webp" alt="" width={1024} height={1536} sizes="30vw" />
+        <div className="lab-art-window art-fly" aria-hidden="true"><Image unoptimized src={asset("/media/art/twilight-painting-warm.webp")} alt="" fill sizes="42vw" /></div>
+        <Image unoptimized className="section-art section-art--lab-bust art-fly" src={asset("/media/art/plaster-bust.webp")} alt="" width={1024} height={1536} sizes="30vw" />
         <div className="section-label"><span>{content.lab.label}</span><span>CO-CREATED WITH CODEX</span></div>
         <div className="lab-heading-wrap reveal"><h2 id="lab-heading">{content.lab.title}</h2><p>{content.lab.status}</p></div>
         <div className="lab-list">
@@ -794,7 +797,7 @@ export function Portfolio() {
       </section>
 
       <section className="tools" aria-labelledby="tools-heading">
-        <Image unoptimized className="tools-hand art-fly" src="/media/art/plaster-hand.webp" alt="" width={1577} height={997} sizes="58vw" />
+        <Image unoptimized className="tools-hand art-fly" src={asset("/media/art/plaster-hand.webp")} alt="" width={1577} height={997} sizes="58vw" />
         <div className="section-shell tools-head">
           <div className="section-label"><span>{content.tools.label}</span><span>WORKING CONSTELLATION</span></div>
           <h2 id="tools-heading" className="editorial-heading reveal">{content.tools.title}</h2><p className="reveal">{content.tools.note}</p>
